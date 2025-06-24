@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascabel - Личный кабинет</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="page-transition page-profile">
+    <header>
+        <h1><a href="index.html" style="text-decoration: none;  color: #2b020e;">Cascabel</a></h1>
+    </header>
+    <button id="menuToggle">Меню</button>
+    <div id="authContainer"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="works.html">Работы</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+            <li><a href="order.html">Оформить заказ</a></li>
+            <li><a href="ordersList.html">Список заказов</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li class="admin-only" data-role=><a href="admin.html">Админ-панель</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Личный кабинет</h1>
+        <div class="profile-tabs">
+            <button class="active" data-tab="info">Информация</button>
+            <button data-tab="orders">Заказы</button>
+            <button data-tab="mail">Почта</button>
+            <button data-tab="edit">Редактировать</button>
+            <button data-tab="stats">Статистика</button>
+            <button data-tab="achievements">Достижения</button>
+            <button data-tab="shop">Магазин</button>
+        </div>
+        <div id="infoTab" class="tab-content" style="display: block;">
+            <div id="profileInfo"></div>
+        </div>
+        <div id="ordersTab" class="tab-content" style="display: none;">
+            <div id="profileOrders"></div>
+            <button id="toggleCompleted">Показать выполненные заказы</button>
+            <div id="completedOrders" style="display: none;"></div>
+        </div>
+        <div id="mailTab" class="tab-content" style="display: none;">
+            <div class="mail-tabs">
+    <button id="showInbox" class="active">Входящие</button>
+    <button id="showSent">Отправленные</button>
+  </div>
+  <div id="mailListInbox" style="display: none;"></div>
+<div id="mailListSent" style="display: none;"></div>
+<div id="mailPaginationInbox" style="display: none;"></div>
+<div id="mailPaginationSent" style="display: none;"></div>
+  <form id="sendMailForm">
+    <input type="text" id="mailTo" placeholder="Кому">
+    <input type="text" id="mailSubject" placeholder="Тема">
+    <textarea id="mailContent" placeholder="Текст сообщения"></textarea>
+    <button type="button">Отправить</button>
+  </form>
+        </div>
+        <div id="messageModal" class="modal">
+  <div class="modal-content">
+    <span id="closeMessageModal">&times;</span>
+    <h2>Сообщение</h2>
+    <div id="messageDetails"></div>
+  </div>
+</div>
+        <div id="editTab" class="tab-content" style="display: none;">
+            <form id="editProfileForm">
+                <input type="password" id="newPassword" placeholder="Новый пароль">
+                <input type="email" id="newEmail" placeholder="Новый email">
+                <input type="file" id="newAvatar" accept="image/*">
+                <button type="button">Сохранить изменения</button>
+            </form>
+        </div>
+        <div id="statsTab" class="tab-content" style="display: none;">
+            <h2>Статистика</h2>
+            <div id="userStats"></div>
+        </div>
+        <div id="achievementsTab" class="tab-content" style="display: none;">
+            <h2>Достижения</h2>
+            <div id="achievements"></div>
+        </div>
+        <div id="shopTab" class="tab-content" style="display: none;">
+            <h2>Магазин премиум-функций</h2>
+            <div id="premiumShop"></div>
+        </div>
+    </div>
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <h2>Подробности заказа</h2>
+            <div id="orderDetails"></div>
+        </div>
+    </div>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <div class="contact-info">
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@cascabel.com</p>
+            <p>Адрес: г. Москва, ул. Дизайнерская, д. 10</p>
+        </div>
+    </footer>
+    <button id="scrollTop">↑</button>
+    <script type="module" src="../js/mains/main_profile.js"></script>
+</body>
+</html>

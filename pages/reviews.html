@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascabel - Отзывы</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="page-transition page-reviews">
+    <header>
+        <h1><a href="index.html" style="text-decoration: none;  color: #2b020e;">Cascabel</a></h1>
+    </header>
+    <button id="menuToggle">Меню</button>
+    <div id="authContainer"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="works.html">Работы</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+            <li><a href="order.html">Оформить заказ</a></li>
+            <li><a href="ordersList.html">Список заказов</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li class="admin-only" data-role=><a href="admin.html">Админ-панель</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Отзывы</h1>
+        <div id="reviewsList" class="grid-container"></div>
+        <div id="reviewForm" style="display: none;">
+            <h2>Оставить отзыв</h2>
+            <select id="reviewOrder">
+                <option value="">Выберите заказ</option>
+            </select>
+            <div id="ratingStars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="reviewRating" value="0">
+            <textarea id="reviewText" placeholder="Ваш отзыв"></textarea>
+            <input type="text" id="reviewTarget" placeholder="Имя дизайнера (если применимо)">
+            <button>Отправить</button>
+        </div>
+    </div>
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <h2>Подробности заказа</h2>
+            <div id="orderDetails"></div>
+        </div>
+    </div>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <div class="contact-info">
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@cascabel.com</p>
+            <p>Адрес: г. Москва, ул. Дизайнерская, д. 10</p>
+        </div>
+    </footer>
+    <button id="scrollTop">↑</button>
+    <script type="module" src="../js/mains/main_reviews.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascabel - Работы</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    
+</head>
+<body class="page-transition page-works">
+    <header>
+        <h1><a href="index.html" style="text-decoration: none; color: #2b020e;">Cascabel</a></h1>
+    </header>
+    <button id="menuToggle">Меню</button>
+    <div id="authContainer"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="works.html">Работы</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+            <li><a href="order.html">Оформить заказ</a></li>
+            <li><a href="ordersList.html">Список заказов</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li class="admin-only" data-role=><a href="admin.html">Админ-панель</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Работы дизайнеров</h1>
+        <div id="carousel" class="carousel"></div>
+        <div id="searchForm" class="search-form">
+            <h2>Поиск работ</h2>
+            <select id="searchStyle">
+                <option value="">Все стили</option>
+                <option value="Модерн">Модерн</option>
+                <option value="Классический">Классический</option>
+                <option value="Индустриальный">Индустриальный</option>
+                <option value="Скандинавский">Скандинавский</option>
+                <option value="Лофт">Лофт</option>
+            </select>
+            <select id="searchType">
+                <option value="">Все типы</option>
+                <option value="Ремонт кухни">Ремонт кухни</option>
+                <option value="Ремонт дома">Ремонт дома</option>
+                <option value="Apartment Finishing">Apartment Finishing</option>
+                <option value="Room Redesign">Room Redesign</option>
+                <option value="Studio Renovation">Studio Renovation</option>
+                <option value="Office Setup">Office Setup</option>
+                <option value="Bathroom Remodel">Bathroom Remodel</option>
+                <option value="Exterior Design">Exterior Design</option>
+            </select>
+            <select id="searchUploader">
+                <option value="">Все авторы</option>
+            </select>
+            <input type="number" id="searchMinRating" placeholder="Мин. рейтинг автора">
+            <button>Поиск</button>
+        </div>
+        <div id="showcase" class="showcase-container"></div>
+        <button id="toggleWorksBtn">Все работы</button>        
+        <div id="worksGrid" class="grid-container"></div>
+        <div id="uploadForm" style="display: none;">
+            <h2>Загрузить работу</h2>
+            <input type="file" id="uploadImage" accept="image/*">
+            <input type="url" id="uploadImageUrl" placeholder="Или введите ссылку на изображение">
+            <input type="text" id="uploadTitle" placeholder="Название работы" required>
+            <input type="text" id="uploadStyle" placeholder="Стиль" required>
+            <input type="text" id="uploadType" placeholder="Тип работы" required>
+            <button>Загрузить</button>
+        </div>
+    </div>
+    <div id="recommendedDesigners">
+        <h2>Рекомендуемые дизайнеры</h2>
+        <div id="recommendedDesignersList"></div>
+    </div>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <div class="contact-info">
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@cascabel.com</p>
+            <p>Адрес: г. Москва, ул. Дизайнерская, д. 10</p>
+        </div>
+    </footer>
+    <button id="scrollTop">↑</button>
+    <script type="module" src="../js/mains/main_works.js"></script>
+</body>
+</html>

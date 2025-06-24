@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascabel - Панель администратора</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="page-transition page-admin">
+    <header>
+        <h1><a href="index.html" style="text-decoration: none;  color: #2b020e;">Cascabel</a></h1>
+    </header>
+    <button id="menuToggle">Меню</button>
+    <div id="authContainer"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="works.html">Работы</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+            <li><a href="order.html">Оформить заказ</a></li>
+            <li><a href="ordersList.html">Список заказов</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+            <li class="admin-only" data-role=><a href="admin.html">Админ-панель</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Панель администратора</h1>
+        <div class="admin-tabs">
+            <button class="active" data-tab="users">Пользователи</button>
+            <button data-tab="orders">Заказы</button>
+            <button data-tab="works">Работы</button>
+            <button data-tab="reviews">Отзывы</button>
+            <button data-tab="analytics">Аналитика</button>
+        </div>
+        <div id="usersTab" class="tab-content" style="display: block;">
+            <h2>Управление пользователями</h2>
+            <div id="usersList"></div>
+        </div>
+        <div id="ordersTab" class="tab-content" style="display: none;">
+            <h2>Модерация заказов</h2>
+            <div id="ordersList"></div>
+        </div>
+        <div id="worksTab" class="tab-content" style="display: none;">
+            <h2>Модерация работ</h2>
+            <div id="worksList"></div>
+        </div>
+        <div id="reviewsTab" class="tab-content" style="display: none;">
+            <h2>Модерация отзывов</h2>
+            <div id="reviewsList"></div>
+        </div>
+        <div id="analyticsTab" class="tab-content" style="display: none;">
+            <h2>Аналитика и статистика</h2>
+            <div id="analyticsData"></div>
+        </div>
+    </div>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <div class="contact-info">
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@cascabel.com</p>
+            <p>Адрес: г. Москва, ул. Дизайнерская, д. 10</p>
+        </div>
+    </footer>
+    <button id="scrollTop">↑</button>
+    <script type="module" src="../js/mains/main_admin.js"></script>
+</body>
+</html>

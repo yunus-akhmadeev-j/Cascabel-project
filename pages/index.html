@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cascabel - Главная</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body class="page-transition page-index">
+    <header>
+        <h1><a href="index.html" style="text-decoration: none;  color: #2b020e;">Cascabel</a></h1>
+    </header>
+    <button id="menuToggle">Меню</button>
+    <div id="authContainer"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="works.html">Работы</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+            <li><a href="order.html">Оформить заказ</a></li>
+            <li><a href="ordersList.html">Список заказов</a></li>
+            <li><a href="profile.html">Личный кабинет</a></li>
+             <li class="admin-only" data-role=><a href="admin.html">Админ-панель</a></li>
+        </ul>
+    </nav>
+    <div class="sidebar left">
+        <h3>Наши услуги</h3>
+        <div id="servicesList"></div>
+    </div>
+    <div class="sidebar right">
+        <h3>Топ пользователей</h3>
+        <div id="topUsersSidebar"></div>
+        <button id="showFullUsersList">Весь список</button>
+    </div>
+    <div class="container">
+        <section id="styles">
+            <h2>Стили интерьера</h2>
+            <div id="stylesCards" class="card-container"></div>
+            
+        </section>
+        <section id="designers">
+            <h2>Топ дизайнеров</h2>
+            <table id="topDesignersTable">
+                <thead>
+                    <tr><th>#</th><th>Имя</th><th>Ранг</th><th>Уровень</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+        <section id="recentOrders">
+            <h2>Недавно выполненные заказы</h2>
+            <div id="recentOrdersList"></div>
+        </section>
+    </div>
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span id="closeModal">&times;</span>
+            <h2>Подробности заказа</h2>
+            <div id="orderDetails"></div>
+        </div>
+    </div>
+    <div id="fullUsersListModal" class="users-card">
+        <h3>Полный список пользователей</h3>
+        <table id="fullUsersListTable">
+            <thead>
+                <tr><th>#</th><th>Имя</th><th>Уровень</th></tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="paginationFullUsers"></div>
+        <button id="closeFullUsersList">Закрыть</button>
+    </div>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+        <a href="#">Twitter</a>
+        <div class="contact-info">
+            <p>Телефон: +7 (495) 123-45-67</p>
+            <p>Email: info@cascabel.com</p>
+            <p>Адрес: г. Москва, ул. Дизайнерская, д. 10</p>
+        </div>
+    </footer>
+    <button id="scrollTop">↑</button>
+    <script type="module" src="../js/mains/main_index.js"></script>
+</body>
+</html>

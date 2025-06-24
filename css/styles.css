@@ -1,0 +1,1332 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #FFF8DC, #E6D8B0);
+    color: #4A2C2A;
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: 200px;
+    font-size: 16px;
+}
+
+header {
+    background: linear-gradient(to right, #800000, #83332d);
+    color: #FFF8DC;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+header.hidden {
+    transform: translateY(-100%);
+}
+
+header h1 {
+    font-size: 2.5em;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 5px;
+}
+
+nav {
+    display: none;
+    background: linear-gradient(to right, rgba(74, 44, 42, 0.9), rgba(128, 0, 0, 0.9));
+    padding: 15px 0;
+    position: fixed;
+    width: 100%;
+    top: 80px;
+    z-index: 1001;
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+nav.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 20px;
+}
+
+nav ul li a {
+    color: #FFF8DC;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    position: relative;
+}
+
+nav ul li a:hover {
+    background: rgba(218, 165, 32, 0.2);
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #DAA520;
+    transition: width 0.5s ease-in-out, left 0.5s ease-in-out;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 20px;
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 0.6), rgba(230, 216, 176, 0.6));
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    transition: margin-top 0.6s ease-in-out;
+}
+
+h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #4A2C2A;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 5px;
+}
+
+h1 {
+    font-size: 2.2em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+/* Кнопка меню */
+#menuToggle {
+    display: block;
+    position: fixed;
+    top: 25px;
+    left: 20px;
+    z-index: 1001;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, opacity 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+#menuToggle:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+#menuToggle.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#menuToggle.active {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+}
+
+/* Контейнер авторизации */
+#authContainer {
+    position: fixed;
+    top: 25px;
+    right: 20px;
+    z-index: 1001;
+    transition: opacity 0.5s ease-in-out;
+}
+
+#authContainer.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#authContainer a, #authContainer button {
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+#authContainer a:hover, #authContainer button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+#authContainer img#profileAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid #DAA520;
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+#authContainer img#profileAvatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px rgba(218, 165, 32, 0.7);
+}
+
+/* Секции */
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 248, 220, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(218, 165, 32, 0.3);
+}
+
+/* Карточки */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card {
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 0.8), rgba(230, 216, 176, 0.8));
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out, background 0.6s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(218, 165, 32, 0.2);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    height: 120px;
+    object-fit: cover;
+    border: 2px solid #DAA520;
+}
+
+.card.active {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 1), rgba(230, 216, 176, 1));
+    border: 1px solid #DAA520;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Сетка */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.grid-item {
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 0.8), rgba(230, 216, 176, 0.8));
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+    border: 1px solid rgba(218, 165, 32, 0.2);
+}
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background: rgba(255, 248, 220, 0.4);
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #DAA520;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid rgba(74, 44, 42, 0.2);
+}
+
+table th {
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    font-weight: bold;
+    border-bottom: 2px solid #DAA520;
+}
+
+table tr:hover {
+    background: rgba(255, 248, 220, 0.6);
+}
+
+/* Формы */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #4A2C2A;
+    border-radius: 5px;
+    background: #FFF8DC;
+    color: #4A2C2A;
+    transition: border-color 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #DAA520;
+    box-shadow: 0 0 8px rgba(218, 165, 32, 0.5);
+}
+
+button {
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Футер */
+footer {
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    text-align: center;
+    padding: 20px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    border-top: 2px solid #DAA520;
+}
+
+footer.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer a {
+    color: #FFF8DC;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: transform 0.5s ease-in-out, text-shadow 0.5s ease-in-out;
+}
+
+footer a:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 5px rgba(218, 165, 32, 0.7);
+}
+
+/* Кнопка "Наверх" */
+#scrollTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    z-index: 99;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #DAA520;
+}
+
+#scrollTop:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Модальное окно */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1002;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: linear-gradient(to bottom, #FFF8DC, #E6D8B0);
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+    border: 2px solid #DAA520;
+}
+
+/* Карточка пользователя */
+.user-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, #FFF8DC, #E6D8B0);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1002;
+    border: 2px solid #DAA520;
+}
+
+.user-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid #DAA520;
+}
+
+.user-card button {
+    margin-top: 10px;
+}
+
+/* Табы */
+.orders-tabs, .profile-tabs, .mail-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.orders-tabs button, .profile-tabs button, .mail-tabs button {
+    margin: 0 10px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.orders-tabs button.active, .profile-tabs button.active, .mail-tabs button.active {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+.orders-tabs button:hover, .profile-tabs button:hover, .mail-tabs button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Пагинация */
+#pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#pagination button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+#pagination button.active {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+#pagination button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Карусель */
+.carousel {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+    border: 2px solid #DAA520;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel img {
+    width: 100%;
+    height: 100%;
+    max-width: 400px;
+    max-height: 300px;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 0.3s ease-in-out;
+    cursor: pointer;
+}
+.carousel img:hover {
+    transform: scale(1.05); 
+}
+.carousel img.active {
+    opacity: 1;
+}
+.carousel-fullscreen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-fullscreen img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border: 3px solid #DAA520;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+}
+
+/* Витрина */
+.showcase-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.showcase-item {
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.6s ease-in-out, box-shadow 0.6s ease-in-out;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(218, 165, 32, 0.2);
+}
+
+.showcase-item img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-bottom: 1px solid #DAA520;
+}
+
+.showcase-item span {
+    display: block;
+    padding: 5px;
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 0.8), rgba(230, 216, 176, 0.8));
+    color: #4A2C2A;
+}
+
+.showcase-item.active {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid #DAA520;
+}
+
+.showcase-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Форма поиска */
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form select, .search-form input {
+    width: 200px;
+}
+
+/* Авторизация */
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+    background: rgba(255, 248, 220, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAA520;
+}
+
+.auth-toggle {
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.auth-toggle button {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.auth-toggle button.active {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+.auth-toggle button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Полоса прогресса */
+.progress-bar {
+    width: 100%;
+    background-color: #E6D8B0;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+    border: 1px solid #DAA520;
+}
+
+.progress {
+    height: 20px;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    width: 0;
+    transition: width 0.8s ease-in-out;
+}
+
+/* Почта */
+.mail-container {
+    background: rgba(255, 248, 220, 0.4);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #DAA520;
+}
+
+.mail-item {
+    background: rgba(255, 248, 220, 0.6);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-left: 3px solid transparent;
+}
+
+.mail-item.unread {
+    border-left: 3px solid #800000;
+    font-weight: bold;
+}
+
+.mail-item button {
+    margin-top: 5px;
+}
+
+/* Стили для админ-панели */
+.page-admin .container {
+    background: linear-gradient(to bottom, rgba(74, 44, 42, 0.7), rgba(128, 0, 0, 0.7));
+    border: 1px solid #DAA520;
+}
+
+/* Стили для статистики и достижений */
+.profile-card h3 {
+    color: #4A2C2A;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid #DAA520;
+    padding-bottom: 5px;
+}
+
+.profile-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.profile-card ul li {
+    margin-bottom: 5px;
+    padding: 5px;
+    background: rgba(255, 248, 220, 0.2);
+    border-radius: 5px;
+    border-left: 2px solid #DAA520;
+}
+
+/* Стили для магазина премиум-функций */
+#premiumShop button {
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+#premiumShop button:hover {
+    background: linear-gradient(to right, #660000, #3A1C1A);
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+
+/* Стили для рейтинга в отзывах */
+#ratingStars {
+    margin: 10px 0;
+}
+
+#ratingStars .star {
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #ccc;
+    margin-right: 5px;
+    transition: color 0.5s ease-in-out;
+}
+
+#ratingStars .star:hover {
+    color: #DAA520;
+}
+
+/* Боковые панели на главной странице */
+.sidebar {
+    position: fixed;
+    top: 100px;
+    width: 250px;
+    background: linear-gradient(to bottom, rgba(255, 248, 220, 0.9), rgba(230, 216, 176, 0.9));
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #DAA520;
+    z-index: 99;
+    max-height: calc(72vh - 100px);
+    overflow-y: auto;
+}
+
+.sidebar.left {
+    left: 20px;
+    margin-top: 50px;
+}
+
+.sidebar.right {
+    right: 20px;
+    margin-top: 50px;
+}
+
+.sidebar h3 {
+    color: #4A2C2A;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #DAA520;
+    padding-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 8px;
+    padding: 5px;
+    border-left: 2px solid #DAA520;
+    background: rgba(218, 165, 32, 0.1);
+    border-radius: 3px;
+    color: #4A2C2A;
+}
+
+.sidebar ul ul {
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.sidebar ul ul li {
+    border-left: 1px solid #DAA520;
+    background: transparent;
+    padding: 3px;
+    font-size: 0.9em;
+}
+
+.sidebar button {
+    margin-top: 10px;
+    width: 100%;
+    background: linear-gradient(to right, #800000, #4A2C2A);
+    color: #FFF8DC;
+}
+
+.top-user {
+    position: relative;
+    padding: 5px;
+    margin-left: 5px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    text-align: left;
+}
+
+.top-user.top-1 {
+    background: linear-gradient(to right, rgba(218, 165, 32, 0.5), rgba(218, 165, 32, 0.3));
+    border: 2px solid #DAA520;
+    font-weight: bold;
+    color: #4A2C2A;
+}
+
+.top-user.top-2 {
+    background: linear-gradient(to right, rgba(192, 192, 192, 0.5), rgba(192, 192, 192, 0.3));
+    border: 2px solid #C0C0C0;
+    color: #4A2C2A;
+}
+
+.top-user.top-3 {
+    background: linear-gradient(to right, rgba(205, 127, 50, 0.5), rgba(205, 127, 50, 0.3));
+    border: 2px solid #CD7F32;
+    color: #4A2C2A;
+}
+
+.top-user::before {
+    content: attr(data-rank);
+    position: absolute;
+    top: 5px;
+    left: -20px;
+    transform: none;
+    background: #DAA520;
+    color: #4A2C2A;
+    padding: 2px 5px;
+    border-radius: 50%;
+    font-size: 0.8em;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-user.top-1::before {
+    background: #DAA520;
+}
+
+.top-user.top-2::before {
+    background: #C0C0C0;
+}
+
+.top-user.top-3::before {
+    background: #CD7F32;
+}
+
+/* Карточка полного списка пользователей */
+.users-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to bottom, #FFF8DC, #E6D8B0);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    z-index: 1002;
+    border: 2px solid #DAA520;
+    max-width: 600px;
+    display: none;
+}
+
+.users-card h3 {
+    margin-bottom: 15px;
+    color: #4A2C2A;
+    border-bottom: 2px solid #DAA520;
+}
+
+.users-card table {
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+}
+
+.users-card button {
+    margin-top: 15px;
+}
+/* Ограничение размера изображений в карусели */
+.grid-item img {
+    width: 100%;
+    max-width: 375px;
+    max-height: 1170px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Ограничение размера изображений на главной странице */
+.main-page-img {
+    width: 100%;
+    max-width: 375px;
+    max-height: 1170px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
+}
+/* Стили для модального окна */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1002;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: linear-gradient(to bottom, #FFF8DC, #E6D8B0);
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  position: relative;
+  border: 2px solid #DAA520;
+}
+
+#closeMessageModal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#closeMessageModal:hover,
+#closeMessageModal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Стили для списка сообщений */
+.mail-item {
+  background: rgba(255, 248, 220, 0.6);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+}
+
+.mail-item.unread {
+  border-left: 3px solid #800000;
+  font-weight: bold;
+}
+
+.mail-item:hover {
+  background: rgba(255, 248, 220, 0.8);
+}
+
+/* Стили для пагинации */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background: linear-gradient(to right, #800000, #4A2C2A);
+  color: #FFF8DC;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.pagination button:hover:not(:disabled) {
+  background: linear-gradient(to right, #660000, #3A1C1A);
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(218, 165, 32, 0.5);
+}
+nav ul li.admin-only {
+  display: none;
+}
+nav ul li.admin-only[data-role="Admin"] {
+  display: block;
+}
+/* Изначально скрываем список работ */
+        #worksGrid {
+            display: none;
+        }
+        /* Стили для кнопки "Все работы" */
+        #toggleWorksBtn {
+            background-color: #800000;
+            color: #FFF8DC;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        #toggleWorksBtn:hover {
+            background-color: #600000;
+        }
+        /* Стили для полноразмерного изображения */
+        .fullscreen-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+        .fullscreen-image img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        .fullscreen-image button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #800000;
+            color: #FFF8DC;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .fullscreen-image button:hover {
+            background-color: #600000;
+        }
+/* Адаптация для планшетов (ширина до 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 95%;
+        margin: 90px auto;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        padding: 0 10px;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    .sidebar {
+        width: 200px;
+        padding: 15px;
+    }
+
+    .sidebar.left {
+        left: 10px;
+    }
+
+    .sidebar.right {
+        right: 10px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Адаптация для смартфонов (ширина до 768px) */
+@media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    nav {
+        top: 60px;
+        padding: 10px 0;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+        width: 90%;
+        text-align: center;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 8px;
+    }
+
+    .container {
+        margin: 70px auto 100px;
+        padding: 10px;
+    }
+
+    #menuToggle {
+        top: 15px;
+        left: 10px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    #authContainer {
+        top: 15px;
+        right: 10px;
+    }
+
+    #authContainer a, #authContainer button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .sidebar {
+        display: none; /* Скрываем боковые панели на смартфонах */
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    .grid-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .card-container {
+        gap: 10px;
+    }
+
+    .card {
+        width: 160px;
+        padding: 10px;
+    }
+
+    .card img {
+        height: 100px;
+    }
+
+    footer {
+        padding: 15px 0;
+        font-size: 0.9em;
+    }
+
+    footer a {
+        margin: 0 5px;
+    }
+
+    #scrollTop {
+        bottom: 15px;
+        right: 15px;
+        padding: 8px 12px;
+    }
+
+    .modal-content {
+        width: 90%;
+        max-width: 400px;
+        padding: 15px;
+    }
+
+    form {
+        max-width: 90%;
+        gap: 10px;
+    }
+
+    input, textarea, select {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* Адаптация для очень маленьких экранов (до 480px) */
+@media (max-width: 480px) {
+    .container {
+        margin: 60px auto 120px;
+        padding: 8px;
+    }
+
+    header h1 {
+        font-size: 1.2em;
+    }
+
+    nav {
+        top: 50px;
+    }
+
+    nav ul li a {
+        font-size: 0.85em;
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 1.2em;
+    }
+
+    h2 {
+        font-size: 1.1em;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr; /* Одна колонка на маленьких экранах */
+        gap: 8px;
+    }
+
+    .card {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .card img {
+        height: 120px;
+    }
+
+    .auth-container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .auth-toggle button {
+        padding: 8px;
+        font-size: 0.9em;
+    }
+
+    footer {
+        padding: 10px 0;
+        font-size: 0.8em;
+    }
+
+    footer .contact-info p {
+        margin: 3px 0;
+    }
+}
